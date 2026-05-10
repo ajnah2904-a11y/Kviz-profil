@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koji si IT profil? | Sajam Srednjih Škola</title>
+    <style>
+        :root { --primary: #00ff88; --bg: #0f172a; --text: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        #quiz-container { background: #1e293b; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 90%; max-width: 500px; text-align: center; }
+        h1 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid var(--primary); background: transparent; color: white; border-radius: 8px; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        .btn:hover { background: var(--primary); color: var(--bg); font-weight: bold; }
+        .hidden { display: none; }
+        #progress { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1rem; }
+        .result-title { color: var(--primary); font-size: 2rem; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div id="quiz-start">
+        <h1>Koji si IT profil?</h1>
+        <p>Saznaj gdje pripadaš u svijetu tehnologije u 5 pitanja!</p>
+        <button class="btn" onclick="startQuiz()">Započni kviz</button>
+    </div>
+
+    <div id="quiz-box" class="hidden">
+        <div id="progress">Pitanje 1 od 5</div>
+        <h2 id="question">Tekst pitanja</h2>
+        <div id="options">
+            <button class="btn" onclick="answer('A')" id="optA">Opcija A</button>
+            <button class="btn" onclick="answer('B')" id="optB">Opcija B</button>
+        </div>
+    </div>
+
+    <div id="result-box" class="hidden">
+        <h2>Tvoj rezultat:</h2>
+        <div class="result-title" id="profile-name"></div>
+        <p id="profile-desc"></p>
+        <button class="btn" onclick="location.reload()">Pokušaj ponovo</button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "Šta ti je bitnije kod nove aplikacije?", a: "Da izgleda prelijepo i moderno", b: "Da je super brza i sigurna" },
+        { q: "Koji ti je hobi draži?", a: "Crtanje ili fotografija", b: "Rješavanje zagonetki ili šah" },
+        { q: "Kada bi pravila igricu, šta bi prije radila?", a: "Dizajnirala likove i svijet", b: "Programirala pravila i fiziku" },
+        { q: "Šta te više nervira?", a: "Ružna boja i loš font", b: "Kada dugme ne radi kako treba" },
+        { q: "Tvoj idealan posao je...", a: "Kreativni haos", b: "Savršena logika i red" }
+    ];
+
+    let currentStep = 0;
+    let scoreA = 0;
+
+    function startQuiz() {
+        document.getElementById('quiz-start').classList.add('hidden');
+        document.getElementById('quiz-box').classList.remove('hidden');
+        showQuestion();
+    }
+
+    function showQuestion() {
+        document.getElementById('progress').innerText = `Pitanje ${currentStep + 1} od ${questions.length}`;
+        document.getElementById('question').innerText = questions[currentStep].q;
+        document.getElementById('optA').innerText = questions[currentStep].a;
+        document.getElementById('optB').innerText = questions[currentStep].b;
+    }
+
+    function answer(val) {
+        if(val === 'A') scoreA++;
+        currentStep++;
+
+        if(currentStep < questions.length) {
+            showQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        document.getElementById('quiz-box').classList.add('hidden');
+        document.getElementById('result-box').classList.remove('hidden');
+        
+        const resName = document.getElementById('profile-name');
+        const resDesc = document.getElementById('profile-desc');
+
+        if(scoreA >= 4) {
+            resName.innerText = "Frontend Developer";
+            resDesc.innerText = "Ti si vizionar! Voliš estetiku i brineš o tome kako korisnici doživljavaju digitalni svijet.";
+        } else if(scoreA <= 1) {
+            resName.innerText = "Backend Developer";
+            resDesc.innerText = "Ti si mozak operacije! Voliš logiku, baze podataka i rješavanje kompleksnih problema.";
+        } else {
+            resName.innerText = "Fullstack Developer";
+            resDesc.innerText = "Ti si svestrani genijalac! Razumiješ i ljepotu dizajna i snagu koda u pozadini.";
+        }
+    }
+</script>
+
+</body>
+</html>
