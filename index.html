@@ -21,7 +21,7 @@
 <div id="quiz-container">
     <div id="quiz-start">
         <h1>Koji si IT profil?</h1>
-        <p>Saznaj gdje pripadaš u svijetu tehnologije u 5 pitanja!</p>
+        <p>Saznaj gdje pripadaš u svijetu tehnologije u 5 kratkih pitanja!</p>
         <button class="btn" onclick="startQuiz()">Započni kviz</button>
     </div>
 
@@ -46,9 +46,9 @@
     const questions = [
         { q: "Šta ti je bitnije kod nove aplikacije?", a: "Da izgleda prelijepo i moderno", b: "Da je super brza i sigurna" },
         { q: "Koji ti je hobi draži?", a: "Crtanje ili fotografija", b: "Rješavanje zagonetki ili šah" },
-        { q: "Kada bi pravila igricu, šta bi prije radila?", a: "Dizajnirala likove i svijet", b: "Programirala pravila i fiziku" },
-        { q: "Šta te više nervira?", a: "Ružna boja i loš font", b: "Kada dugme ne radi kako treba" },
-        { q: "Tvoj idealan posao je...", a: "Kreativni haos", b: "Savršena logika i red" }
+        { q: "Kada bi pravio/la igricu, šta bi prije radio/la?", a: "Dizajnirao/la likove i svijet", b: "Programirao/la pravila i fiziku" },
+        { q: "Šta te više nervira?", a: "Loša boja i neuredan font", b: "Kada aplikacija baguje i koči" },
+        { q: "Tvoj idealan posao bi bio/la...", a: "Kreativno izražavanje", b: "Analitičko rješavanje problema" }
     ];
 
     let currentStep = 0;
@@ -87,13 +87,13 @@
 
         if(scoreA >= 4) {
             resName.innerText = "Frontend Developer";
-            resDesc.innerText = "Ti si vizionar! Voliš estetiku i brineš o tome kako korisnici doživljavaju digitalni svijet.";
+            resDesc.innerText = "Ti si vizionar! Voliš estetiku i brineš o tome kako korisnici doživljavaju digitalni svijet. Tvoj fokus je na onome što se vidi.";
         } else if(scoreA <= 1) {
             resName.innerText = "Backend Developer";
-            resDesc.innerText = "Ti si mozak operacije! Voliš logiku, baze podataka i rješavanje kompleksnih problema.";
+            resDesc.innerText = "Ti si mozak operacije! Voliš logiku, baze podataka i rješavanje kompleksnih problema koji pokreću sisteme iznutra.";
         } else {
             resName.innerText = "Fullstack Developer";
-            resDesc.innerText = "Ti si svestrani genijalac! Razumiješ i ljepotu dizajna i snagu koda u pozadini.";
+            resDesc.innerText = "Ti si svestrani genijalac! Razumiješ i ljepotu dizajna i snagu koda u pozadini. Možeš samostalno graditi cijele projekte.";
         }
     }
 </script>
